@@ -7,6 +7,7 @@
   const speechInput = document.getElementById("speech-input");
   const startBtn    = document.getElementById("start-btn");
   const backBtn     = document.getElementById("back-btn");
+  const restartBtn  = document.getElementById("restart-btn");
   const chunkSize   = document.getElementById("chunk-size");
 
   const cardEl      = document.getElementById("card");
@@ -113,6 +114,12 @@
     render(direction);
   }
 
+  function restart() {
+    if (index === 0) return;
+    index = 0;
+    render("prev");
+  }
+
   // ---------- Timer (count-up stopwatch) ----------
   let timerRunning = false;
   let elapsed = 0;        // ms accumulated
@@ -192,6 +199,7 @@
 
   startBtn.addEventListener("click", startPractice);
   backBtn.addEventListener("click", backToEditor);
+  restartBtn.addEventListener("click", restart);
   prevBtn.addEventListener("click", () => go(-1));
   nextBtn.addEventListener("click", () => go(1));
 
@@ -203,6 +211,7 @@
     if (cardView.classList.contains("hidden")) return;
     if (e.key === "ArrowLeft")  { go(-1); }
     else if (e.key === "ArrowRight") { go(1); }
+    else if (e.key === "Home")  { e.preventDefault(); restart(); }
     else if (e.key === " ")     { e.preventDefault(); timerRunning ? pauseTimer() : startTimer(); }
   });
 

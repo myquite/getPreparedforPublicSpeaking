@@ -150,12 +150,14 @@ body {
 
 /* ===== Card view ===== */
 .card-topbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding: 14px 18px;
   gap: 12px;
 }
+
+.timer-controls { justify-self: end; }
 
 .timer {
   font-size: 24px;
@@ -259,8 +261,9 @@ body {
 /* bottom nav */
 .card-nav {
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 56px;
+  gap: 40px;
   padding: 12px 0 22px;
 }
 .nav-btn {
@@ -279,6 +282,14 @@ body {
 }
 .nav-btn:active { transform: scale(0.9); }
 .nav-btn:disabled { opacity: 0.32; cursor: default; box-shadow: none; }
+
+/* Secondary restart button sits between the arrows */
+.nav-btn--restart {
+  width: 50px;
+  height: 50px;
+  color: var(--text-soft);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
+}
 
 @media (min-width: 768px) {
   .card-text { font-size: clamp(26px, 2.4vw + 12px, 40px); }
