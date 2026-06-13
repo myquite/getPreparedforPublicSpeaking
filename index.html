@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="theme-color" content="#f5f5f7" />
+  <title>Speech Practice</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ===== Input view ===== -->
+  <section id="input-view" class="view">
+    <div class="input-wrap">
+      <header class="input-header">
+        <h1>Speech Practice</h1>
+        <p>Paste your speech below. We'll break it into bite-sized cards you can flip through while you rehearse.</p>
+      </header>
+
+      <textarea
+        id="speech-input"
+        placeholder="Paste or type your speech here…"
+        autocomplete="off"
+        autocapitalize="sentences"
+        spellcheck="true"></textarea>
+
+      <div class="chunk-control">
+        <label for="chunk-size">Card size</label>
+        <div class="segmented" id="chunk-size" role="group" aria-label="Card size">
+          <button type="button" data-words="22" class="seg-btn">Short</button>
+          <button type="button" data-words="38" class="seg-btn is-active">Medium</button>
+          <button type="button" data-words="60" class="seg-btn">Long</button>
+        </div>
+      </div>
+
+      <button id="start-btn" class="primary-btn" disabled>Start Practice</button>
+    </div>
+  </section>
+
+  <!-- ===== Card / practice view ===== -->
+  <section id="card-view" class="view hidden">
+    <header class="card-topbar">
+      <button id="back-btn" class="icon-btn" aria-label="Back to editor">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="timer" id="timer" role="timer" aria-live="off">00:00</div>
+
+      <div class="timer-controls">
+        <button id="timer-toggle" class="icon-btn" aria-label="Start timer">
+          <svg class="ic-play" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          <svg class="ic-pause hidden" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z" fill="currentColor"/></svg>
+        </button>
+        <button id="timer-reset" class="icon-btn" aria-label="Reset timer">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 5V2L8 6l4 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="card-stage" id="card-stage">
+      <div class="card" id="card">
+        <p class="card-text" id="card-text"></p>
+      </div>
+    </div>
+
+    <div class="progress">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-label" id="progress-label">1 / 1</div>
+    </div>
+
+    <nav class="card-nav">
+      <button id="prev-btn" class="nav-btn" aria-label="Previous card">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button id="next-btn" class="nav-btn" aria-label="Next card">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </nav>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
